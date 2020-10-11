@@ -7,12 +7,12 @@ AsmFastMinIdxI64:
  mov         eax,esi
  cmp         esi,16
  jae         CASE_LARGE
- lea		 r8,[JUMP_TABLE]
- movzx		 r9d,byte [r8+rax]
- add		 r8,r9
+ lea         r8,[JUMP_TABLE]
+ movzx       r9d,byte [r8+rax]
+ add         r8,r9
  lea         r9,[rdi+8*rax]
- mov		 r10,07FFFFFFFFFFFFFFFh
- xor		 eax,eax
+ mov         r10,07FFFFFFFFFFFFFFFh
+ xor         eax,eax
  jmp         r8
 JUMP_TABLE:
 times 1 db ( CASE_0 - JUMP_TABLE)
@@ -32,76 +32,76 @@ times 1 db (CASE_13 - JUMP_TABLE)
 times 1 db (CASE_14 - JUMP_TABLE)
 times 1 db (CASE_15 - JUMP_TABLE)
 CASE_15:
- mov		 r10,qword [r9-120]
+ mov         r10,qword [r9-120]
 CASE_14:
- lea		 ecx,[rsi-14]
- cmp		 r10,qword [r9-112]
- cmovg		 r10,qword [r9-112]
- cmovg		 eax,ecx
+ lea         ecx,[rsi-14]
+ cmp         r10,qword [r9-112]
+ cmovg       r10,qword [r9-112]
+ cmovg       eax,ecx
 CASE_13:
- lea		 ecx,[rsi-13]
- cmp		 r10,qword [r9-104]
- cmovg		 r10,qword [r9-104]
- cmovg		 eax,ecx
+ lea         ecx,[rsi-13]
+ cmp         r10,qword [r9-104]
+ cmovg       r10,qword [r9-104]
+ cmovg       eax,ecx
 CASE_12:
- lea		 ecx,[rsi-12]
- cmp		 r10,qword [r9-96]
- cmovg		 r10,qword [r9-96]
- cmovg		 eax,ecx
+ lea         ecx,[rsi-12]
+ cmp         r10,qword [r9-96]
+ cmovg       r10,qword [r9-96]
+ cmovg       eax,ecx
 CASE_11:
- lea		 ecx,[rsi-11]
- cmp		 r10,qword [r9-88]
- cmovg		 r10,qword [r9-88]
- cmovg		 eax,ecx
+ lea         ecx,[rsi-11]
+ cmp         r10,qword [r9-88]
+ cmovg       r10,qword [r9-88]
+ cmovg       eax,ecx
 CASE_10:
- lea		 ecx,[rsi-10]
- cmp		 r10,qword [r9-80]
- cmovg		 r10,qword [r9-80]
- cmovg		 eax,ecx
+ lea         ecx,[rsi-10]
+ cmp         r10,qword [r9-80]
+ cmovg       r10,qword [r9-80]
+ cmovg       eax,ecx
 CASE_9:
- lea		 ecx,[rsi-9]
- cmp		 r10,qword [r9-72]
- cmovg		 r10,qword [r9-72]
- cmovg		 eax,ecx
+ lea         ecx,[rsi-9]
+ cmp         r10,qword [r9-72]
+ cmovg       r10,qword [r9-72]
+ cmovg       eax,ecx
 CASE_8:
- lea		 ecx,[rsi-8]
- cmp		 r10,qword [r9-64]
- cmovg		 r10,qword [r9-64]
- cmovg		 eax,ecx
+ lea         ecx,[rsi-8]
+ cmp         r10,qword [r9-64]
+ cmovg       r10,qword [r9-64]
+ cmovg       eax,ecx
 CASE_7:
- lea		 ecx,[rsi-7]
- cmp		 r10,qword [r9-56]
- cmovg		 r10,qword [r9-56]
- cmovg		 eax,ecx
+ lea         ecx,[rsi-7]
+ cmp         r10,qword [r9-56]
+ cmovg       r10,qword [r9-56]
+ cmovg       eax,ecx
 CASE_6:
- lea		 ecx,[rsi-6]
- cmp		 r10,qword [r9-48]
- cmovg		 r10,qword [r9-48]
- cmovg		 eax,ecx
+ lea         ecx,[rsi-6]
+ cmp         r10,qword [r9-48]
+ cmovg       r10,qword [r9-48]
+ cmovg       eax,ecx
 CASE_5:
- lea		 ecx,[rsi-5]
- cmp		 r10,qword [r9-40]
- cmovg		 r10,qword [r9-40]
- cmovg		 eax,ecx
+ lea         ecx,[rsi-5]
+ cmp         r10,qword [r9-40]
+ cmovg       r10,qword [r9-40]
+ cmovg       eax,ecx
 CASE_4:
- lea		 ecx,[rsi-4]
- cmp		 r10,qword [r9-32]
- cmovg		 r10,qword [r9-32]
- cmovg		 eax,ecx
+ lea         ecx,[rsi-4]
+ cmp         r10,qword [r9-32]
+ cmovg       r10,qword [r9-32]
+ cmovg       eax,ecx
 CASE_3:
- lea		 ecx,[rsi-3]
- cmp		 r10,qword [r9-24]
- cmovg		 r10,qword [r9-24]
- cmovg		 eax,ecx
+ lea         ecx,[rsi-3]
+ cmp         r10,qword [r9-24]
+ cmovg       r10,qword [r9-24]
+ cmovg       eax,ecx
 CASE_2:
- lea		 ecx,[rsi-2]
- cmp		 r10,qword [r9-16]
- cmovg		 r10,qword [r9-16]
- cmovg		 eax,ecx
+ lea         ecx,[rsi-2]
+ cmp         r10,qword [r9-16]
+ cmovg       r10,qword [r9-16]
+ cmovg       eax,ecx
 CASE_1:
- lea		 ecx,[rsi-1]
- cmp		 r10,qword [r9-8]
- cmovg		 eax,ecx
+ lea         ecx,[rsi-1]
+ cmp         r10,qword [r9-8]
+ cmovg       eax,ecx
 CASE_0:
  ret
 
@@ -158,10 +158,10 @@ LOOP_TOP:
  jb          LOOP_TOP
 
 LOOP_END:
- sub		 eax,16
- vmovd		 xmm4,eax
+ sub         eax,16
+ vmovd       xmm4,eax
  vpbroadcastd ymm4,xmm4
- vpaddd		 ymm4,ymm4,yword [PACKED_SEQ]
+ vpaddd      ymm4,ymm4,yword [PACKED_SEQ]
 
  vmovdqu     ymm8,yword [rsi-128]
  vpcmpgtq    ymm9,ymm0,ymm8

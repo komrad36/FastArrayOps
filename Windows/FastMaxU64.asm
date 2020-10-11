@@ -1,21 +1,21 @@
 _TEXT$AsmFastMaxU64 SEGMENT ALIGN(64)
 
 AsmFastMaxU64 PROC
- sub		 rsp,56
- vpcmpeqd	 ymm1,ymm1,ymm1
+ sub         rsp,56
+ vpcmpeqd    ymm1,ymm1,ymm1
  mov         eax,edx
- vpsllq		 ymm0,ymm1,63
+ vpsllq      ymm0,ymm1,63
  cmp         edx,32
  jae         CASE_LARGE
- vmovdqa	 ymm1,ymm0
- vmovdqa	 ymm2,ymm0
- lea		 r8,JUMP_TABLE
- movzx		 edx,byte ptr [r8+rax]
- add		 r8,rdx
+ vmovdqa     ymm1,ymm0
+ vmovdqa     ymm2,ymm0
+ lea         r8,JUMP_TABLE
+ movzx       edx,byte ptr [r8+rax]
+ add         r8,rdx
  lea         rdx,[rcx+8*rax]
- and		 eax,-4
+ and         eax,-4
  lea         rcx,[rcx+8*rax]
- xor		 eax,eax
+ xor         eax,eax
  jmp         r8
 JUMP_TABLE:
 db 1 DUP ( CASE_0 - JUMP_TABLE)
@@ -36,31 +36,31 @@ db 4 DUP (CASE_20 - JUMP_TABLE)
 db 4 DUP (CASE_24 - JUMP_TABLE)
 db 4 DUP (CASE_28 - JUMP_TABLE)
 CASE_28:
- vpxor		 ymm1,ymm0,ymmword ptr [rcx-224]
+ vpxor       ymm1,ymm0,ymmword ptr [rcx-224]
 CASE_24:
- vpxor   	 ymm2,ymm0,ymmword ptr [rcx-192]
+ vpxor       ymm2,ymm0,ymmword ptr [rcx-192]
 CASE_20:
- vpxor   	 ymm3,ymm0,ymmword ptr [rcx-160]
+ vpxor       ymm3,ymm0,ymmword ptr [rcx-160]
  vpcmpgtq    ymm4,ymm3,ymm1
  vpblendvb   ymm1,ymm1,ymm3,ymm4
 CASE_16:
- vpxor   	 ymm3,ymm0,ymmword ptr [rcx-128]
+ vpxor       ymm3,ymm0,ymmword ptr [rcx-128]
  vpcmpgtq    ymm4,ymm3,ymm2
  vpblendvb   ymm2,ymm2,ymm3,ymm4
 CASE_12:
- vpxor   	 ymm3,ymm0,ymmword ptr [rcx-96]
+ vpxor       ymm3,ymm0,ymmword ptr [rcx-96]
  vpcmpgtq    ymm4,ymm3,ymm1
  vpblendvb   ymm1,ymm1,ymm3,ymm4
- vpxor   	 ymm3,ymm0,ymmword ptr [rcx-64]
+ vpxor       ymm3,ymm0,ymmword ptr [rcx-64]
  vpcmpgtq    ymm4,ymm3,ymm2
  vpblendvb   ymm2,ymm2,ymm3,ymm4
- vpxor   	 ymm3,ymm0,ymmword ptr [rcx-32]
+ vpxor       ymm3,ymm0,ymmword ptr [rcx-32]
  vpcmpgtq    ymm4,ymm3,ymm1
  vpblendvb   ymm1,ymm1,ymm3,ymm4
- vpxor   	 ymm3,ymm0,ymmword ptr [rdx-32]
+ vpxor       ymm3,ymm0,ymmword ptr [rdx-32]
  vpcmpgtq    ymm4,ymm3,ymm2
  vpblendvb   ymm2,ymm2,ymm3,ymm4
- jmp		 GATHER_1
+ jmp         GATHER_1
 CASE_11:
  mov         rax,qword ptr [rdx-88]
 CASE_10:
@@ -94,7 +94,7 @@ CASE_1:
  cmp         rax,qword ptr [rdx-8]
  cmovb       rax,qword ptr [rdx-8]
 CASE_0:
- add		 rsp,56
+ add         rsp,56
  ret
 
 db 26 DUP (0CCh)
@@ -120,28 +120,28 @@ CASE_LARGE:
  jae         LOOP_END
 
  LOOP_TOP:
- vpxor   	 ymm9,ymm0,ymmword ptr [rcx-256]
+ vpxor       ymm9,ymm0,ymmword ptr [rcx-256]
  vpcmpgtq    ymm10,ymm9,ymm1
  vpblendvb   ymm1,ymm1,ymm9,ymm10
- vpxor   	 ymm9,ymm0,ymmword ptr [rcx-224]
+ vpxor       ymm9,ymm0,ymmword ptr [rcx-224]
  vpcmpgtq    ymm10,ymm9,ymm2
  vpblendvb   ymm2,ymm2,ymm9,ymm10
- vpxor   	 ymm9,ymm0,ymmword ptr [rcx-192]
+ vpxor       ymm9,ymm0,ymmword ptr [rcx-192]
  vpcmpgtq    ymm10,ymm9,ymm3
  vpblendvb   ymm3,ymm3,ymm9,ymm10
- vpxor   	 ymm9,ymm0,ymmword ptr [rcx-160]
+ vpxor       ymm9,ymm0,ymmword ptr [rcx-160]
  vpcmpgtq    ymm10,ymm9,ymm4
  vpblendvb   ymm4,ymm4,ymm9,ymm10
- vpxor   	 ymm9,ymm0,ymmword ptr [rcx-128]
+ vpxor       ymm9,ymm0,ymmword ptr [rcx-128]
  vpcmpgtq    ymm10,ymm9,ymm5
  vpblendvb   ymm5,ymm5,ymm9,ymm10
- vpxor   	 ymm9,ymm0,ymmword ptr [rcx-96]
+ vpxor       ymm9,ymm0,ymmword ptr [rcx-96]
  vpcmpgtq    ymm10,ymm9,ymm6
  vpblendvb   ymm6,ymm6,ymm9,ymm10
- vpxor   	 ymm9,ymm0,ymmword ptr [rcx-64]
+ vpxor       ymm9,ymm0,ymmword ptr [rcx-64]
  vpcmpgtq    ymm10,ymm9,ymm7
  vpblendvb   ymm7,ymm7,ymm9,ymm10
- vpxor   	 ymm9,ymm0,ymmword ptr [rcx-32]
+ vpxor       ymm9,ymm0,ymmword ptr [rcx-32]
  vpcmpgtq    ymm10,ymm9,ymm8
  vpblendvb   ymm8,ymm8,ymm9,ymm10
  add         rcx,256
@@ -149,28 +149,28 @@ CASE_LARGE:
  jb          LOOP_TOP
 
  LOOP_END:
- vpxor   	 ymm9,ymm0,ymmword ptr [rdx-256]
+ vpxor       ymm9,ymm0,ymmword ptr [rdx-256]
  vpcmpgtq    ymm10,ymm9,ymm1
  vpblendvb   ymm1,ymm1,ymm9,ymm10
- vpxor   	 ymm9,ymm0,ymmword ptr [rdx-224]
+ vpxor       ymm9,ymm0,ymmword ptr [rdx-224]
  vpcmpgtq    ymm10,ymm9,ymm2
  vpblendvb   ymm2,ymm2,ymm9,ymm10
- vpxor   	 ymm9,ymm0,ymmword ptr [rdx-192]
+ vpxor       ymm9,ymm0,ymmword ptr [rdx-192]
  vpcmpgtq    ymm10,ymm9,ymm3
  vpblendvb   ymm3,ymm3,ymm9,ymm10
- vpxor   	 ymm9,ymm0,ymmword ptr [rdx-160]
+ vpxor       ymm9,ymm0,ymmword ptr [rdx-160]
  vpcmpgtq    ymm10,ymm9,ymm4
  vpblendvb   ymm4,ymm4,ymm9,ymm10
- vpxor   	 ymm9,ymm0,ymmword ptr [rdx-128]
+ vpxor       ymm9,ymm0,ymmword ptr [rdx-128]
  vpcmpgtq    ymm10,ymm9,ymm5
  vpblendvb   ymm5,ymm5,ymm9,ymm10
- vpxor   	 ymm9,ymm0,ymmword ptr [rdx-96]
+ vpxor       ymm9,ymm0,ymmword ptr [rdx-96]
  vpcmpgtq    ymm10,ymm9,ymm6
  vpblendvb   ymm6,ymm6,ymm9,ymm10
- vpxor   	 ymm9,ymm0,ymmword ptr [rdx-64]
+ vpxor       ymm9,ymm0,ymmword ptr [rdx-64]
  vpcmpgtq    ymm10,ymm9,ymm7
  vpblendvb   ymm7,ymm7,ymm9,ymm10
- vpxor   	 ymm9,ymm0,ymmword ptr [rdx-32]
+ vpxor       ymm9,ymm0,ymmword ptr [rdx-32]
  vpcmpgtq    ymm10,ymm9,ymm8
  vpblendvb   ymm8,ymm8,ymm9,ymm10
  vmovaps     xmm10,xmmword ptr [rsp+80]
@@ -204,8 +204,8 @@ CASE_LARGE:
  vpcmpgtq    xmm0,xmm2,xmm1
  vpblendvb   xmm1,xmm1,xmm2,xmm0
  vmovq       rax,xmm1
- btc		 rax,63
- add		 rsp,56
+ btc         rax,63
+ add         rsp,56
  ret
 AsmFastMaxU64 ENDP
 

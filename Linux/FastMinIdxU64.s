@@ -7,12 +7,12 @@ AsmFastMinIdxU64:
  mov         eax,esi
  cmp         esi,16
  jae         CASE_LARGE
- lea		 r8,[JUMP_TABLE]
- movzx		 r9d,byte [r8+rax]
- add		 r8,r9
+ lea         r8,[JUMP_TABLE]
+ movzx       r9d,byte [r8+rax]
+ add         r8,r9
  lea         r9,[rdi+8*rsi]
- mov		 r10,-1
- xor		 eax,eax
+ mov         r10,-1
+ xor         eax,eax
  jmp         r8
 JUMP_TABLE:
 times 1 db ( CASE_0 - JUMP_TABLE)
@@ -32,76 +32,76 @@ times 1 db (CASE_13 - JUMP_TABLE)
 times 1 db (CASE_14 - JUMP_TABLE)
 times 1 db (CASE_15 - JUMP_TABLE)
 CASE_15:
- mov		 r10,qword [r9-120]
+ mov         r10,qword [r9-120]
 CASE_14:
- lea		 ecx,[rsi-14]
- cmp		 r10,qword [r9-112]
- cmova		 r10,qword [r9-112]
- cmova		 eax,ecx
+ lea         ecx,[rsi-14]
+ cmp         r10,qword [r9-112]
+ cmova       r10,qword [r9-112]
+ cmova       eax,ecx
 CASE_13:
- lea		 ecx,[rsi-13]
- cmp		 r10,qword [r9-104]
- cmova		 r10,qword [r9-104]
- cmova		 eax,ecx
+ lea         ecx,[rsi-13]
+ cmp         r10,qword [r9-104]
+ cmova       r10,qword [r9-104]
+ cmova       eax,ecx
 CASE_12:
- lea		 ecx,[rsi-12]
- cmp		 r10,qword [r9-96]
- cmova		 r10,qword [r9-96]
- cmova		 eax,ecx
+ lea         ecx,[rsi-12]
+ cmp         r10,qword [r9-96]
+ cmova       r10,qword [r9-96]
+ cmova       eax,ecx
 CASE_11:
- lea		 ecx,[rsi-11]
- cmp		 r10,qword [r9-88]
- cmova		 r10,qword [r9-88]
- cmova		 eax,ecx
+ lea         ecx,[rsi-11]
+ cmp         r10,qword [r9-88]
+ cmova       r10,qword [r9-88]
+ cmova       eax,ecx
 CASE_10:
- lea		 ecx,[rsi-10]
- cmp		 r10,qword [r9-80]
- cmova		 r10,qword [r9-80]
- cmova		 eax,ecx
+ lea         ecx,[rsi-10]
+ cmp         r10,qword [r9-80]
+ cmova       r10,qword [r9-80]
+ cmova       eax,ecx
 CASE_9:
- lea		 ecx,[rsi-9]
- cmp		 r10,qword [r9-72]
- cmova		 r10,qword [r9-72]
- cmova		 eax,ecx
+ lea         ecx,[rsi-9]
+ cmp         r10,qword [r9-72]
+ cmova       r10,qword [r9-72]
+ cmova       eax,ecx
 CASE_8:
- lea		 ecx,[rsi-8]
- cmp		 r10,qword [r9-64]
- cmova		 r10,qword [r9-64]
- cmova		 eax,ecx
+ lea         ecx,[rsi-8]
+ cmp         r10,qword [r9-64]
+ cmova       r10,qword [r9-64]
+ cmova       eax,ecx
 CASE_7:
- lea		 ecx,[rsi-7]
- cmp		 r10,qword [r9-56]
- cmova		 r10,qword [r9-56]
- cmova		 eax,ecx
+ lea         ecx,[rsi-7]
+ cmp         r10,qword [r9-56]
+ cmova       r10,qword [r9-56]
+ cmova       eax,ecx
 CASE_6:
- lea		 ecx,[rsi-6]
- cmp		 r10,qword [r9-48]
- cmova		 r10,qword [r9-48]
- cmova		 eax,ecx
+ lea         ecx,[rsi-6]
+ cmp         r10,qword [r9-48]
+ cmova       r10,qword [r9-48]
+ cmova       eax,ecx
 CASE_5:
- lea		 ecx,[rsi-5]
- cmp		 r10,qword [r9-40]
- cmova		 r10,qword [r9-40]
- cmova		 eax,ecx
+ lea         ecx,[rsi-5]
+ cmp         r10,qword [r9-40]
+ cmova       r10,qword [r9-40]
+ cmova       eax,ecx
 CASE_4:
- lea		 ecx,[rsi-4]
- cmp		 r10,qword [r9-32]
- cmova		 r10,qword [r9-32]
- cmova		 eax,ecx
+ lea         ecx,[rsi-4]
+ cmp         r10,qword [r9-32]
+ cmova       r10,qword [r9-32]
+ cmova       eax,ecx
 CASE_3:
- lea		 ecx,[rsi-3]
- cmp		 r10,qword [r9-24]
- cmova		 r10,qword [r9-24]
- cmova		 eax,ecx
+ lea         ecx,[rsi-3]
+ cmp         r10,qword [r9-24]
+ cmova       r10,qword [r9-24]
+ cmova       eax,ecx
 CASE_2:
- lea		 ecx,[rsi-2]
- cmp		 r10,qword [r9-16]
- cmova		 r10,qword [r9-16]
- cmova		 eax,ecx
+ lea         ecx,[rsi-2]
+ cmp         r10,qword [r9-16]
+ cmova       r10,qword [r9-16]
+ cmova       eax,ecx
 CASE_1:
- lea		 ecx,[rsi-1]
- cmp		 r10,qword [r9-8]
- cmova		 eax,ecx
+ lea         ecx,[rsi-1]
+ cmp         r10,qword [r9-8]
+ cmova       eax,ecx
 CASE_0:
  ret
 
@@ -119,7 +119,7 @@ CASE_LARGE:
  ; increment
  vpslld      ymm8,ymm0,4
  ; sign bit
- vpsllq		 ymm0,ymm0,63
+ vpsllq      ymm0,ymm0,63
 
  ; best values
  vpxor       ymm1,ymm0,yword [rdi]
@@ -160,10 +160,10 @@ LOOP_TOP:
  jb          LOOP_TOP
 
 LOOP_END:
- sub		 eax,16
- vmovd		 xmm5,eax
+ sub         eax,16
+ vmovd       xmm5,eax
  vpbroadcastd ymm5,xmm5
- vpaddd		 ymm5,ymm5,yword [PACKED_SEQ]
+ vpaddd      ymm5,ymm5,yword [PACKED_SEQ]
 
  vpxor       ymm11,ymm0,yword [rsi-128]
  vpcmpgtq    ymm9,ymm1,ymm11

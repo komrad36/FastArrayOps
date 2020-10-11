@@ -4,15 +4,15 @@ AsmFastMaxI32 PROC
  mov         eax,edx
  cmp         edx,32
  jae         CASE_LARGE
- vpcmpeqd	 ymm0,ymm0,ymm0
- vpslld		 ymm0,ymm0,31
- lea		 r8,JUMP_TABLE
- movzx		 edx,byte ptr [r8+rax]
- add		 r8,rdx
+ vpcmpeqd    ymm0,ymm0,ymm0
+ vpslld      ymm0,ymm0,31
+ lea         r8,JUMP_TABLE
+ movzx       edx,byte ptr [r8+rax]
+ add         r8,rdx
  lea         rdx,[rcx+4*rax]
- and		 eax,-8
+ and         eax,-8
  lea         rcx,[rcx+4*rax]
- mov		 eax,080000000h
+ mov         eax,080000000h
  jmp         r8
 JUMP_TABLE:
 db 1 DUP ( CASE_0 - JUMP_TABLE)
@@ -25,7 +25,7 @@ db 8 DUP (CASE_16 - JUMP_TABLE)
 db 8 DUP (CASE_24 - JUMP_TABLE)
 db 45 DUP (0CCh)
 CASE_24:
- vmovdqu	 ymm0,ymmword ptr [rcx-96]
+ vmovdqu     ymm0,ymmword ptr [rcx-96]
 CASE_16:
  vpmaxsd     ymm0,ymm0,ymmword ptr [rcx-64]
 CASE_8:
@@ -50,13 +50,13 @@ CASE_4:
  vmovd       eax,xmm0
  ret
 CASE_3:
- mov		 eax,dword ptr [rdx-12]
+ mov         eax,dword ptr [rdx-12]
 CASE_2:
- cmp		 eax,dword ptr [rdx-8]
- cmovl		 eax,dword ptr [rdx-8]
+ cmp         eax,dword ptr [rdx-8]
+ cmovl       eax,dword ptr [rdx-8]
 CASE_1:
- cmp		 eax,dword ptr [rdx-4]
- cmovl		 eax,dword ptr [rdx-4]
+ cmp         eax,dword ptr [rdx-4]
+ cmovl       eax,dword ptr [rdx-4]
 CASE_0:
  ret
 

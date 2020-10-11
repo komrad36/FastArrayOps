@@ -4,17 +4,17 @@ AsmFastMaxI8 PROC
  mov         eax,edx
  cmp         edx,127
  ja          CASE_LARGE
- lea		 r8,JUMP_TARGETS
- movzx		 edx,byte ptr [r8+rax-(JUMP_TARGETS-JUMP_TABLE)]
+ lea         r8,JUMP_TARGETS
+ movzx       edx,byte ptr [r8+rax-(JUMP_TARGETS-JUMP_TABLE)]
 db 03Eh
- add		 r8,rdx
+ add         r8,rdx
  lea         rdx,[rcx+rax]
- and		 eax,-32
+ and         eax,-32
  add         rcx,rax
- vpcmpeqd	 ymm0,ymm0,ymm0
+ vpcmpeqd    ymm0,ymm0,ymm0
  vpxor       xmm1,xmm1,xmm1
  vpavgb      ymm0,ymm0,ymm1
- mov		 al,080h
+ mov         al,080h
  jmp         r8
 db 11 DUP (0CCh)
 JUMP_TABLE:
@@ -30,7 +30,7 @@ db 32 DUP (CASE_64 - JUMP_TARGETS)
 db 32 DUP (CASE_96 - JUMP_TARGETS)
 JUMP_TARGETS:
 CASE_96:
- vmovdqu	 ymm0,ymmword ptr [rcx-96]
+ vmovdqu     ymm0,ymmword ptr [rcx-96]
 CASE_64:
  vpmaxsb     ymm0,ymm0,ymmword ptr [rcx-64]
 CASE_32:
@@ -89,13 +89,13 @@ CASE_4:
 CASE_3:
  mov         al,byte ptr [rdx-3]
 CASE_2:
- mov		 cl,byte ptr [rdx-2]
- cmp		 al,cl
- cmovl		 eax,ecx
+ mov         cl,byte ptr [rdx-2]
+ cmp         al,cl
+ cmovl       eax,ecx
 CASE_1:
- mov		 cl,byte ptr [rdx-1]
- cmp		 al,cl
- cmovl		 eax,ecx
+ mov         cl,byte ptr [rdx-1]
+ cmp         al,cl
+ cmovl       eax,ecx
 CASE_0:
  ret
 

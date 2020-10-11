@@ -7,14 +7,14 @@ AsmFastMinDouble:
  mov         eax,esi
  cmp         esi,32
  jae         CASE_LARGE
- vpcmpeqd	 ymm0,ymm0,ymm0
+ vpcmpeqd    ymm0,ymm0,ymm0
 db 03Eh
- vpcmpeqd	 ymm1,ymm1,ymm1
- lea		 r8,[JUMP_TABLE]
- movzx		 esi,byte [r8+rax]
- add		 r8,rsi
+ vpcmpeqd    ymm1,ymm1,ymm1
+ lea         r8,[JUMP_TABLE]
+ movzx       esi,byte [r8+rax]
+ add         r8,rsi
  lea         rsi,[rdi+8*rax]
- and		 eax,-4
+ and         eax,-4
  lea         rdi,[rdi+8*rax]
  jmp         r8
 JUMP_TABLE:

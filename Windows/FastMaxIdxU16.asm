@@ -1,22 +1,22 @@
 _TEXT$AsmFastMaxIdxU16 SEGMENT ALIGN(64)
 
 AsmFastMaxIdxU16 PROC
- sub		 rsp,136
+ sub         rsp,136
  vmovdqu     ymm4,ymmword ptr [SEQ]
  mov         eax,edx
  cmp         edx,127
  ja          CASE_LARGE
  vpcmpeqd    ymm0,ymm0,ymm0
- lea		 r8,JUMP_TABLE
+ lea         r8,JUMP_TABLE
  vpsllw      ymm2,ymm0,4
- vpxor		 xmm0,xmm0,xmm0
- vpxor		 xmm1,xmm1,xmm1
- vmovdqa	 ymm3,ymm4
- movzx		 r9d,word ptr [r8+2*rax]
- add		 r8,r9
+ vpxor       xmm0,xmm0,xmm0
+ vpxor       xmm1,xmm1,xmm1
+ vmovdqa     ymm3,ymm4
+ movzx       r9d,word ptr [r8+2*rax]
+ add         r8,r9
  lea         r9,[rcx+2*rax]
- xor		 r10d,r10d
- and		 eax,-16
+ xor         r10d,r10d
+ and         eax,-16
  lea         rcx,[rcx+2*rax]
  jmp         r8
 SEQ:
@@ -40,61 +40,61 @@ dw 16 DUP ( CASE_96 - JUMP_TABLE)
 dw 16 DUP (CASE_112 - JUMP_TABLE)
 CASE_112:
  vmovdqu     ymm1,ymmword ptr [rcx-224]
- vpsubw		 ymm4,ymm4,ymm2
+ vpsubw      ymm4,ymm4,ymm2
 CASE_96:
  vpmaxuw     ymm0,ymm1,ymmword ptr [rcx-192]
  vpcmpeqw    ymm1,ymm0,ymm1
  vpblendvb   ymm3,ymm4,ymm3,ymm1
- vpsubw		 ymm4,ymm4,ymm2
+ vpsubw      ymm4,ymm4,ymm2
 CASE_80:
  vpmaxuw     ymm1,ymm0,ymmword ptr [rcx-160]
  vpcmpeqw    ymm0,ymm0,ymm1
  vpblendvb   ymm3,ymm4,ymm3,ymm0
- vpsubw		 ymm4,ymm4,ymm2
+ vpsubw      ymm4,ymm4,ymm2
 CASE_64:
  vpmaxuw     ymm0,ymm1,ymmword ptr [rcx-128]
  vpcmpeqw    ymm1,ymm0,ymm1
  vpblendvb   ymm3,ymm4,ymm3,ymm1
- vpsubw		 ymm4,ymm4,ymm2
+ vpsubw      ymm4,ymm4,ymm2
 CASE_48:
  vpmaxuw     ymm1,ymm0,ymmword ptr [rcx-96]
  vpcmpeqw    ymm0,ymm0,ymm1
  vpblendvb   ymm3,ymm4,ymm3,ymm0
- vpsubw		 ymm4,ymm4,ymm2
+ vpsubw      ymm4,ymm4,ymm2
 CASE_32:
  vpmaxuw     ymm0,ymm1,ymmword ptr [rcx-64]
  vpcmpeqw    ymm1,ymm0,ymm1
  vpblendvb   ymm3,ymm4,ymm3,ymm1
- vpsubw		 ymm4,ymm4,ymm2
+ vpsubw      ymm4,ymm4,ymm2
 CASE_16:
  vpmaxuw     ymm1,ymm0,ymmword ptr [rcx-32]
  vpcmpeqw    ymm0,ymm0,ymm1
  vpblendvb   ymm3,ymm4,ymm3,ymm0
- lea		 ecx,[rdx-16]
- vmovd		 xmm4,ecx
+ lea         ecx,[rdx-16]
+ vmovd       xmm4,ecx
  vpbroadcastw ymm4,xmm4
- vpaddw		 ymm4,ymm4,ymmword ptr [SEQ]
+ vpaddw      ymm4,ymm4,ymmword ptr [SEQ]
  vpmaxuw     ymm0,ymm1,ymmword ptr [r9-32]
  vpcmpeqw    ymm1,ymm0,ymm1
  vpblendvb   ymm2,ymm4,ymm3,ymm1
  vextracti128 xmm1,ymm0,1
  vextracti128 xmm3,ymm2,1
- vpmaxuw	 xmm0,xmm0,xmm1
+ vpmaxuw     xmm0,xmm0,xmm1
  vpcmpeqw    xmm1,xmm0,xmm1
  vpblendvb   xmm2,xmm2,xmm3,xmm1
  vpunpckhqdq xmm1,xmm0,xmm0
  vpunpckhqdq xmm3,xmm2,xmm2
- vpmaxuw	 xmm0,xmm0,xmm1
+ vpmaxuw     xmm0,xmm0,xmm1
  vpcmpeqw    xmm1,xmm0,xmm1
  vpblendvb   xmm2,xmm2,xmm3,xmm1
  vmovshdup   xmm1,xmm0
  vmovshdup   xmm3,xmm2
- vpmaxuw	 xmm0,xmm0,xmm1
+ vpmaxuw     xmm0,xmm0,xmm1
  vpcmpeqw    xmm1,xmm0,xmm1
  vpblendvb   xmm2,xmm2,xmm3,xmm1
  vpshuflw    xmm1,xmm0,225
  vpshuflw    xmm3,xmm2,225
- vpmaxuw	 xmm0,xmm0,xmm1
+ vpmaxuw     xmm0,xmm0,xmm1
  vpcmpeqw    xmm1,xmm0,xmm1
  vpblendvb   xmm0,xmm2,xmm3,xmm1
  vmovd       eax,xmm0
@@ -105,26 +105,26 @@ CASE_8:
  vpmaxuw     xmm1,xmm0,xmmword ptr [rcx]
  vpcmpeqw    xmm0,xmm0,xmm1
  vpblendvb   xmm3,xmm4,xmm3,xmm0
- lea		 ecx,[rdx-8]
- vmovd		 xmm4,ecx
+ lea         ecx,[rdx-8]
+ vmovd       xmm4,ecx
  vpbroadcastw xmm4,xmm4
- vpaddw		 xmm4,xmm4,xmmword ptr [SEQ]
+ vpaddw      xmm4,xmm4,xmmword ptr [SEQ]
  vpmaxuw     xmm0,xmm1,xmmword ptr [r9-16]
  vpcmpeqw    xmm1,xmm0,xmm1
  vpblendvb   xmm2,xmm4,xmm3,xmm1
  vpunpckhqdq xmm1,xmm0,xmm0
  vpunpckhqdq xmm3,xmm2,xmm2
- vpmaxuw	 xmm0,xmm0,xmm1
+ vpmaxuw     xmm0,xmm0,xmm1
  vpcmpeqw    xmm1,xmm0,xmm1
  vpblendvb   xmm2,xmm2,xmm3,xmm1
  vmovshdup   xmm1,xmm0
  vmovshdup   xmm3,xmm2
- vpmaxuw	 xmm0,xmm0,xmm1
+ vpmaxuw     xmm0,xmm0,xmm1
  vpcmpeqw    xmm1,xmm0,xmm1
  vpblendvb   xmm2,xmm2,xmm3,xmm1
  vpshuflw    xmm1,xmm0,225
  vpshuflw    xmm3,xmm2,225
- vpmaxuw	 xmm0,xmm0,xmm1
+ vpmaxuw     xmm0,xmm0,xmm1
  vpcmpeqw    xmm1,xmm0,xmm1
  vpblendvb   xmm0,xmm2,xmm3,xmm1
  vmovd       eax,xmm0
@@ -132,43 +132,43 @@ CASE_8:
  add         rsp,136
  ret
 CASE_7:
- mov		 r10w,word ptr [r9-14]
+ mov         r10w,word ptr [r9-14]
 CASE_6:
- lea		 ecx,[rdx-6]
- cmp		 r10w,word ptr [r9-12]
- cmovb		 r10w,word ptr [r9-12]
- cmovb		 eax,ecx
+ lea         ecx,[rdx-6]
+ cmp         r10w,word ptr [r9-12]
+ cmovb       r10w,word ptr [r9-12]
+ cmovb       eax,ecx
 CASE_5:
- lea		 ecx,[rdx-5]
- cmp		 r10w,word ptr [r9-10]
- cmovb		 r10w,word ptr [r9-10]
- cmovb		 eax,ecx
+ lea         ecx,[rdx-5]
+ cmp         r10w,word ptr [r9-10]
+ cmovb       r10w,word ptr [r9-10]
+ cmovb       eax,ecx
 CASE_4:
- lea		 ecx,[rdx-4]
- cmp		 r10w,word ptr [r9-8]
- cmovb		 r10w,word ptr [r9-8]
- cmovb		 eax,ecx
+ lea         ecx,[rdx-4]
+ cmp         r10w,word ptr [r9-8]
+ cmovb       r10w,word ptr [r9-8]
+ cmovb       eax,ecx
 CASE_3:
- lea		 ecx,[rdx-3]
- cmp		 r10w,word ptr [r9-6]
- cmovb		 r10w,word ptr [r9-6]
- cmovb		 eax,ecx
+ lea         ecx,[rdx-3]
+ cmp         r10w,word ptr [r9-6]
+ cmovb       r10w,word ptr [r9-6]
+ cmovb       eax,ecx
 CASE_2:
- lea		 ecx,[rdx-2]
- cmp		 r10w,word ptr [r9-4]
- cmovb		 r10w,word ptr [r9-4]
- cmovb		 eax,ecx
+ lea         ecx,[rdx-2]
+ cmp         r10w,word ptr [r9-4]
+ cmovb       r10w,word ptr [r9-4]
+ cmovb       eax,ecx
 CASE_1:
- lea		 ecx,[rdx-1]
- cmp		 r10w,word ptr [r9-2]
- cmovb		 eax,ecx
+ lea         ecx,[rdx-1]
+ cmp         r10w,word ptr [r9-2]
+ cmovb       eax,ecx
 CASE_0:
  add         rsp,136
  ret
 
 CASE_LARGE:
- cmp		 eax,0FFFFh
- ja			 CASE_VERY_LARGE
+ cmp         eax,0FFFFh
+ ja          CASE_VERY_LARGE
 
  ; best indices
  vmovdqa     ymm5,ymm4
@@ -249,10 +249,10 @@ LOOP_TOP:
  jb          LOOP_TOP
 
 LOOP_END:
- add		 eax,-128
- vmovd		 xmm4,eax
+ add         eax,-128
+ vmovd       xmm4,eax
  vpbroadcastw ymm4,xmm4
- vpaddw		 ymm4,ymm4,ymmword ptr [SEQ]
+ vpaddw      ymm4,ymm4,ymmword ptr [SEQ]
 
  vpmaxuw     ymm10,ymm0,ymmword ptr [rdx-256]
  vpmaxuw     ymm11,ymm1,ymmword ptr [rdx-224]
@@ -310,28 +310,28 @@ LOOP_END:
  vextracti128 xmm1,ymm0,1
  vextracti128 xmm3,ymm2,1
 
- vpmaxuw	 xmm0,xmm0,xmm1
+ vpmaxuw     xmm0,xmm0,xmm1
  vpcmpeqw    xmm1,xmm0,xmm1
  vpblendvb   xmm2,xmm2,xmm3,xmm1
 
  vpunpckhqdq xmm1,xmm0,xmm0
  vpunpckhqdq xmm3,xmm2,xmm2
 
- vpmaxuw	 xmm0,xmm0,xmm1
+ vpmaxuw     xmm0,xmm0,xmm1
  vpcmpeqw    xmm1,xmm0,xmm1
  vpblendvb   xmm2,xmm2,xmm3,xmm1
 
  vmovshdup   xmm1,xmm0
  vmovshdup   xmm3,xmm2
 
- vpmaxuw	 xmm0,xmm0,xmm1
+ vpmaxuw     xmm0,xmm0,xmm1
  vpcmpeqw    xmm1,xmm0,xmm1
  vpblendvb   xmm2,xmm2,xmm3,xmm1
 
  vpshuflw    xmm1,xmm0,225
  vpshuflw    xmm3,xmm2,225
 
- vpmaxuw	 xmm0,xmm0,xmm1
+ vpmaxuw     xmm0,xmm0,xmm1
  vpcmpeqw    xmm1,xmm0,xmm1
  vpblendvb   xmm0,xmm2,xmm3,xmm1
  vmovd       eax,xmm0
@@ -343,7 +343,7 @@ LOOP_END:
 CASE_VERY_LARGE:
 
  lea         rdx,[rcx+2*rax]
- add		 rcx,256
+ add         rcx,256
 
  vmovaps     xmmword ptr [rsp],xmm6
  vmovaps     xmmword ptr [rsp+16],xmm7
@@ -357,13 +357,13 @@ CASE_VERY_LARGE:
  vmovaps     xmmword ptr [rsp+160],xmm15
 
  ; outer i
- xor		 r9d,r9d
+ xor         r9d,r9d
 
  ; outer best values
- vpxor		 xmm14,xmm14,xmm14
+ vpxor       xmm14,xmm14,xmm14
 
  ; outer best indices
- vpxor		 xmm15,xmm15,xmm15
+ vpxor       xmm15,xmm15,xmm15
 
  ; increment
  vpcmpeqd    ymm9,ymm9,ymm9
@@ -401,7 +401,7 @@ OUTER_LOOP_TOP:
  vpsubw      ymm4,ymm4,ymm9
 
  lea         r8,[rcx+020000h]
- cmp		 r8,rdx
+ cmp         r8,rdx
  cmova       r8,rdx
 
  add         rcx,256
@@ -444,8 +444,8 @@ INNER_LOOP_TOP:
 INNER_LOOP_END:
 
  vpsraw      ymm10,ymm9,1
- vpsubw		 ymm7,ymm7,ymm10
- vpsubw		 ymm8,ymm8,ymm10
+ vpsubw      ymm7,ymm7,ymm10
+ vpsubw      ymm8,ymm8,ymm10
 
  vpmaxuw     ymm0,ymm0,ymm2
  vpcmpeqw    ymm2,ymm0,ymm2
@@ -456,7 +456,7 @@ INNER_LOOP_END:
  vpblendvb   ymm6,ymm6,ymm8,ymm3
 
  vpsraw      ymm10,ymm10,1
- vpsubw		 ymm6,ymm6,ymm10
+ vpsubw      ymm6,ymm6,ymm10
 
  vpmaxuw     ymm0,ymm0,ymm1
  vpcmpeqw    ymm1,ymm0,ymm1
@@ -469,7 +469,7 @@ INNER_LOOP_END:
  vpcmpeqw    ymm1,ymm0,ymm1
  vpblendvb   ymm5,ymm5,ymm6,ymm1
 
- vmovd		 xmm6,r9d
+ vmovd       xmm6,r9d
  vpbroadcastd ymm6,xmm6
  vpunpcklwd  ymm5,ymm5,ymm6
 
@@ -478,7 +478,7 @@ INNER_LOOP_END:
  vpunpcklwd  ymm1,ymm1,ymm1
  vpblendvb   ymm15,ymm15,ymm5,ymm1
 
- inc		 r9d
+ inc         r9d
 
  cmp         rcx,rdx
  jb          OUTER_LOOP_TOP
@@ -507,8 +507,8 @@ INNER_LOOP_END:
  vpandn      ymm8,ymm8,ymm4
 
  vpsrlw      ymm4,ymm4,1
- vpor		 ymm7,ymm7,ymm4
- vpor		 ymm8,ymm8,ymm4
+ vpor        ymm7,ymm7,ymm4
+ vpor        ymm8,ymm8,ymm4
 
  vpmaxuw     ymm0,ymm0,ymm2
  vpmaxuw     ymm1,ymm1,ymm3
@@ -516,19 +516,19 @@ INNER_LOOP_END:
  vpcmpeqw    ymm2,ymm0,ymm2
  vpcmpeqw    ymm3,ymm1,ymm3
 
- vpblendvb	 ymm5,ymm5,ymm7,ymm2
- vpblendvb	 ymm6,ymm6,ymm8,ymm3
+ vpblendvb   ymm5,ymm5,ymm7,ymm2
+ vpblendvb   ymm6,ymm6,ymm8,ymm3
 
  vpsrlw      ymm4,ymm4,1
- vpor		 ymm6,ymm6,ymm4
+ vpor        ymm6,ymm6,ymm4
 
  vpmaxuw     ymm0,ymm0,ymm1
 
  vpcmpeqw    ymm1,ymm0,ymm1
 
- vpblendvb	 ymm5,ymm5,ymm6,ymm1
+ vpblendvb   ymm5,ymm5,ymm6,ymm1
  vmovaps     xmm6,xmmword ptr [rsp]
- vpor		 ymm5,ymm5,ymmword ptr [SEQ]
+ vpor        ymm5,ymm5,ymmword ptr [SEQ]
  vmovaps     xmm7,xmmword ptr [rsp+16]
 
  vpunpckhqdq ymm1,ymm0,ymm0
@@ -543,13 +543,13 @@ INNER_LOOP_END:
  vpblendvb   ymm5,ymm5,ymm4,ymm1
  vmovaps     xmm12,xmmword ptr [rsp+96]
 
- vpxor		 xmm2,xmm2,xmm2
+ vpxor       xmm2,xmm2,xmm2
  vmovaps     xmm13,xmmword ptr [rsp+112]
  vpunpcklwd  ymm5,ymm5,ymm2
- add		 eax,-128
- vmovd		 xmm4,eax
+ add         eax,-128
+ vmovd       xmm4,eax
  vpbroadcastd ymm4,xmm4
- vpaddd		 ymm5,ymm5,ymm4
+ vpaddd      ymm5,ymm5,ymm4
 
  vpmaxuw     ymm0,ymm0,ymm14
  vpcmpeqw    ymm1,ymm0,ymm14
@@ -563,24 +563,24 @@ INNER_LOOP_END:
  vextracti128 xmm1,ymm0,1
  vextracti128 xmm3,ymm2,1
 
- vpmovzxwd    xmm0,xmm0
- vpmovzxwd    xmm1,xmm1
+ vpmovzxwd   xmm0,xmm0
+ vpmovzxwd   xmm1,xmm1
 
- vpmaxsd	 xmm0,xmm0,xmm1
+ vpmaxsd     xmm0,xmm0,xmm1
  vpcmpeqd    xmm1,xmm0,xmm1
  vpblendvb   xmm2,xmm2,xmm3,xmm1
 
  vpunpckhqdq xmm1,xmm0,xmm0
  vpunpckhqdq xmm3,xmm2,xmm2
 
- vpmaxsd	 xmm0,xmm0,xmm1
+ vpmaxsd     xmm0,xmm0,xmm1
  vpcmpeqd    xmm1,xmm0,xmm1
  vpblendvb   xmm2,xmm2,xmm3,xmm1
 
  vmovshdup   xmm1,xmm0
  vmovshdup   xmm3,xmm2
 
- vpcmpgtd	 xmm0,xmm1,xmm0
+ vpcmpgtd    xmm0,xmm1,xmm0
  vpblendvb   xmm0,xmm2,xmm3,xmm0
  vmovd       eax,xmm0
 

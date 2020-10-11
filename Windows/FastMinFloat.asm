@@ -7,11 +7,11 @@ AsmFastMinFloat PROC
  vpcmpeqd    ymm0,ymm0,ymm0
 db 03Eh
  vpcmpeqd    ymm1,ymm1,ymm1
- lea		 r8,JUMP_TABLE
- movzx		 edx,byte ptr [r8+rax]
- add		 r8,rdx
+ lea         r8,JUMP_TABLE
+ movzx       edx,byte ptr [r8+rax]
+ add         r8,rdx
  lea         rdx,[rcx+4*rax]
- and		 eax,-8
+ and         eax,-8
  lea         rcx,[rcx+4*rax]
  jmp         r8
 JUMP_TABLE:

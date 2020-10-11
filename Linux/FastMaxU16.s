@@ -7,13 +7,13 @@ AsmFastMaxU16:
  mov         eax,esi
  cmp         esi,64
  jae         CASE_LARGE
- vpxor		 xmm0,xmm0,xmm0
- lea		 r8,[JUMP_TABLE]
- movzx		 esi,byte [r8+rax]
+ vpxor       xmm0,xmm0,xmm0
+ lea         r8,[JUMP_TABLE]
+ movzx       esi,byte [r8+rax]
 db 03Eh, 03Eh
- add		 r8,rsi
+ add         r8,rsi
  lea         rsi,[rdi+2*rax]
- and		 eax,-16
+ and         eax,-16
  lea         rdi,[rdi+2*rax]
  jmp         r8
 times 7 db (0CCh)
@@ -28,7 +28,7 @@ times 16 db (CASE_16 - JUMP_TABLE)
 times 16 db (CASE_32 - JUMP_TABLE)
 times 16 db (CASE_48 - JUMP_TABLE)
 CASE_48:
- vmovdqu	 ymm0,yword [rdi-96]
+ vmovdqu     ymm0,yword [rdi-96]
 CASE_32:
  vpmaxuw     ymm0,ymm0,yword [rdi-64]
 CASE_16:

@@ -7,16 +7,16 @@ AsmFastMaxI64:
  mov         eax,esi
  cmp         esi,32
  jae         CASE_LARGE
- vpcmpeqq	 ymm0,ymm0,ymm0
- vpsllq		 ymm0,ymm0,63
- lea		 r8,[JUMP_TABLE]
- movzx		 esi,byte [r8+rax]
- add		 r8,rsi
- vmovdqa	 ymm1,ymm0
+ vpcmpeqq    ymm0,ymm0,ymm0
+ vpsllq      ymm0,ymm0,63
+ lea         r8,[JUMP_TABLE]
+ movzx       esi,byte [r8+rax]
+ add         r8,rsi
+ vmovdqa     ymm1,ymm0
  lea         rsi,[rdi+8*rax]
- and		 eax,-4
+ and         eax,-4
  lea         rdi,[rdi+8*rax]
- mov		 rax,08000000000000000h
+ mov         rax,08000000000000000h
  jmp         r8
 JUMP_TABLE:
 times 1 db ( CASE_0 - JUMP_TABLE)
@@ -38,28 +38,28 @@ times 4 db (CASE_24 - JUMP_TABLE)
 times 4 db (CASE_28 - JUMP_TABLE)
 times 8 db (0CCh)
 CASE_28:
- vmovdqu	 ymm0,yword [rdi-224]
+ vmovdqu     ymm0,yword [rdi-224]
 CASE_24:
- vmovdqu	 ymm1,yword [rdi-192]
+ vmovdqu     ymm1,yword [rdi-192]
 CASE_20:
- vmovdqu	 ymm2,yword [rdi-160]
+ vmovdqu     ymm2,yword [rdi-160]
  vpcmpgtq    ymm4,ymm2,ymm0
  vpblendvb   ymm0,ymm0,ymm2,ymm4
 CASE_16:
- vmovdqu	 ymm2,yword [rdi-128]
+ vmovdqu     ymm2,yword [rdi-128]
  vpcmpgtq    ymm4,ymm2,ymm1
  vpblendvb   ymm1,ymm1,ymm2,ymm4
 CASE_12:
- vmovdqu	 ymm2,yword [rdi-96]
+ vmovdqu     ymm2,yword [rdi-96]
  vpcmpgtq    ymm4,ymm2,ymm0
  vpblendvb   ymm0,ymm0,ymm2,ymm4
- vmovdqu	 ymm2,yword [rdi-64]
+ vmovdqu     ymm2,yword [rdi-64]
  vpcmpgtq    ymm4,ymm2,ymm1
  vpblendvb   ymm1,ymm1,ymm2,ymm4
- vmovdqu	 ymm2,yword [rdi-32]
+ vmovdqu     ymm2,yword [rdi-32]
  vpcmpgtq    ymm4,ymm2,ymm0
  vpblendvb   ymm0,ymm0,ymm2,ymm4
- vmovdqu	 ymm2,yword [rsi-32]
+ vmovdqu     ymm2,yword [rsi-32]
  vpcmpgtq    ymm4,ymm2,ymm1
  vpblendvb   ymm1,ymm1,ymm2,ymm4
  jmp GATHER_1
@@ -114,28 +114,28 @@ CASE_LARGE:
  jae         LOOP_END
 
  LOOP_TOP:
- vmovdqu	 ymm9,yword [rdi-256]
+ vmovdqu     ymm9,yword [rdi-256]
  vpcmpgtq    ymm8,ymm9,ymm0
  vpblendvb   ymm0,ymm0,ymm9,ymm8
- vmovdqu	 ymm9,yword [rdi-224]
+ vmovdqu     ymm9,yword [rdi-224]
  vpcmpgtq    ymm8,ymm9,ymm1
  vpblendvb   ymm1,ymm1,ymm9,ymm8
- vmovdqu	 ymm9,yword [rdi-192]
+ vmovdqu     ymm9,yword [rdi-192]
  vpcmpgtq    ymm8,ymm9,ymm2
  vpblendvb   ymm2,ymm2,ymm9,ymm8
- vmovdqu	 ymm9,yword [rdi-160]
+ vmovdqu     ymm9,yword [rdi-160]
  vpcmpgtq    ymm8,ymm9,ymm3
  vpblendvb   ymm3,ymm3,ymm9,ymm8
- vmovdqu	 ymm9,yword [rdi-128]
+ vmovdqu     ymm9,yword [rdi-128]
  vpcmpgtq    ymm8,ymm9,ymm4
  vpblendvb   ymm4,ymm4,ymm9,ymm8
- vmovdqu	 ymm9,yword [rdi-96]
+ vmovdqu     ymm9,yword [rdi-96]
  vpcmpgtq    ymm8,ymm9,ymm5
  vpblendvb   ymm5,ymm5,ymm9,ymm8
- vmovdqu	 ymm9,yword [rdi-64]
+ vmovdqu     ymm9,yword [rdi-64]
  vpcmpgtq    ymm8,ymm9,ymm6
  vpblendvb   ymm6,ymm6,ymm9,ymm8
- vmovdqu	 ymm9,yword [rdi-32]
+ vmovdqu     ymm9,yword [rdi-32]
  vpcmpgtq    ymm8,ymm9,ymm7
  vpblendvb   ymm7,ymm7,ymm9,ymm8
 
@@ -144,28 +144,28 @@ CASE_LARGE:
  jb          LOOP_TOP
 
  LOOP_END:
- vmovdqu	 ymm9,yword [rsi-256]
+ vmovdqu     ymm9,yword [rsi-256]
  vpcmpgtq    ymm8,ymm9,ymm0
  vpblendvb   ymm0,ymm0,ymm9,ymm8
- vmovdqu	 ymm9,yword [rsi-224]
+ vmovdqu     ymm9,yword [rsi-224]
  vpcmpgtq    ymm8,ymm9,ymm1
  vpblendvb   ymm1,ymm1,ymm9,ymm8
- vmovdqu	 ymm9,yword [rsi-192]
+ vmovdqu     ymm9,yword [rsi-192]
  vpcmpgtq    ymm8,ymm9,ymm2
  vpblendvb   ymm2,ymm2,ymm9,ymm8
- vmovdqu	 ymm9,yword [rsi-160]
+ vmovdqu     ymm9,yword [rsi-160]
  vpcmpgtq    ymm8,ymm9,ymm3
  vpblendvb   ymm3,ymm3,ymm9,ymm8
- vmovdqu	 ymm9,yword [rsi-128]
+ vmovdqu     ymm9,yword [rsi-128]
  vpcmpgtq    ymm8,ymm9,ymm4
  vpblendvb   ymm4,ymm4,ymm9,ymm8
- vmovdqu	 ymm9,yword [rsi-96]
+ vmovdqu     ymm9,yword [rsi-96]
  vpcmpgtq    ymm8,ymm9,ymm5
  vpblendvb   ymm5,ymm5,ymm9,ymm8
- vmovdqu	 ymm9,yword [rsi-64]
+ vmovdqu     ymm9,yword [rsi-64]
  vpcmpgtq    ymm8,ymm9,ymm6
  vpblendvb   ymm6,ymm6,ymm9,ymm8
- vmovdqu	 ymm9,yword [rsi-32]
+ vmovdqu     ymm9,yword [rsi-32]
  vpcmpgtq    ymm8,ymm9,ymm7
  vpblendvb   ymm7,ymm7,ymm9,ymm8
 

@@ -7,15 +7,15 @@ AsmFastMaxI16:
  mov         eax,esi
  cmp         esi,64
  jae         CASE_LARGE
- vpcmpeqd	 ymm0,ymm0,ymm0
- vpsllw		 ymm0,ymm0,15
- lea		 r8,[JUMP_TABLE]
- movzx		 esi,byte [r8+rax]
- add		 r8,rsi
+ vpcmpeqd    ymm0,ymm0,ymm0
+ vpsllw      ymm0,ymm0,15
+ lea         r8,[JUMP_TABLE]
+ movzx       esi,byte [r8+rax]
+ add         r8,rsi
  lea         rsi,[rdi+2*rax]
- and		 eax,-16
+ and         eax,-16
  lea         rdi,[rdi+2*rax]
- mov		 ax,08000h
+ mov         ax,08000h
  jmp         r8
 JUMP_TABLE:
 times  1 db ( CASE_0 - JUMP_TABLE)
@@ -29,7 +29,7 @@ times 16 db (CASE_32 - JUMP_TABLE)
 times 16 db (CASE_48 - JUMP_TABLE)
 times 1 db (0CCh)
 CASE_48:
- vmovdqu	 ymm0,yword [rdi-96]
+ vmovdqu     ymm0,yword [rdi-96]
 CASE_32:
  vpmaxsw     ymm0,ymm0,yword [rdi-64]
 CASE_16:
@@ -69,7 +69,7 @@ CASE_4:
  ret
 times 1 db (0CCh)
 CASE_3:
- mov		 ax,word [rsi-6]
+ mov         ax,word [rsi-6]
 CASE_2:
  cmp         ax,word [rsi-4]
  cmovl       ax,word [rsi-4]

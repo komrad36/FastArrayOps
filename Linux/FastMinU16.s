@@ -7,15 +7,15 @@ AsmFastMinU16:
  mov         eax,esi
  cmp         esi,64
  jae         CASE_LARGE
- vpcmpeqd	 ymm0,ymm0,ymm0
- lea		 r8,[JUMP_TABLE]
- movzx		 esi,byte [r8+rax]
+ vpcmpeqd    ymm0,ymm0,ymm0
+ lea         r8,[JUMP_TABLE]
+ movzx       esi,byte [r8+rax]
 db 03Eh, 03Eh
- add		 r8,rsi
+ add         r8,rsi
  lea         rsi,[rdi+2*rax]
- and		 eax,-16
+ and         eax,-16
  lea         rdi,[rdi+2*rax]
- mov		 ax,-1
+ mov         ax,-1
  jmp         r8
 JUMP_TABLE:
 times  1 db ( CASE_0 - JUMP_TABLE)
@@ -29,7 +29,7 @@ times 16 db (CASE_32 - JUMP_TABLE)
 times 16 db (CASE_48 - JUMP_TABLE)
 times 3 db (0CCh)
 CASE_48:
- vmovdqu	 ymm0,yword [rdi-96]
+ vmovdqu     ymm0,yword [rdi-96]
 CASE_32:
  vpminuw     ymm0,ymm0,yword [rdi-64]
 CASE_16:

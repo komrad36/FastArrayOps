@@ -1,16 +1,16 @@
 _TEXT$AsmFastMinIdxU64 SEGMENT ALIGN(64)
 
 AsmFastMinIdxU64 PROC
- sub		 rsp,72
+ sub         rsp,72
  mov         eax,edx
  cmp         edx,16
  jae         CASE_LARGE
- lea		 r8,JUMP_TABLE
- movzx		 r9d,byte ptr [r8+rax]
- add		 r8,r9
+ lea         r8,JUMP_TABLE
+ movzx       r9d,byte ptr [r8+rax]
+ add         r8,r9
  lea         r9,[rcx+8*rdx]
- mov		 r10,-1
- xor		 eax,eax
+ mov         r10,-1
+ xor         eax,eax
  jmp         r8
 JUMP_TABLE:
 db 1 DUP ( CASE_0 - JUMP_TABLE)
@@ -30,76 +30,76 @@ db 1 DUP (CASE_13 - JUMP_TABLE)
 db 1 DUP (CASE_14 - JUMP_TABLE)
 db 1 DUP (CASE_15 - JUMP_TABLE)
 CASE_15:
- mov		 r10,qword ptr [r9-120]
+ mov         r10,qword ptr [r9-120]
 CASE_14:
- lea		 ecx,[rdx-14]
- cmp		 r10,qword ptr [r9-112]
- cmova		 r10,qword ptr [r9-112]
- cmova		 eax,ecx
+ lea         ecx,[rdx-14]
+ cmp         r10,qword ptr [r9-112]
+ cmova       r10,qword ptr [r9-112]
+ cmova       eax,ecx
 CASE_13:
- lea		 ecx,[rdx-13]
- cmp		 r10,qword ptr [r9-104]
- cmova		 r10,qword ptr [r9-104]
- cmova		 eax,ecx
+ lea         ecx,[rdx-13]
+ cmp         r10,qword ptr [r9-104]
+ cmova       r10,qword ptr [r9-104]
+ cmova       eax,ecx
 CASE_12:
- lea		 ecx,[rdx-12]
- cmp		 r10,qword ptr [r9-96]
- cmova		 r10,qword ptr [r9-96]
- cmova		 eax,ecx
+ lea         ecx,[rdx-12]
+ cmp         r10,qword ptr [r9-96]
+ cmova       r10,qword ptr [r9-96]
+ cmova       eax,ecx
 CASE_11:
- lea		 ecx,[rdx-11]
- cmp		 r10,qword ptr [r9-88]
- cmova		 r10,qword ptr [r9-88]
- cmova		 eax,ecx
+ lea         ecx,[rdx-11]
+ cmp         r10,qword ptr [r9-88]
+ cmova       r10,qword ptr [r9-88]
+ cmova       eax,ecx
 CASE_10:
- lea		 ecx,[rdx-10]
- cmp		 r10,qword ptr [r9-80]
- cmova		 r10,qword ptr [r9-80]
- cmova		 eax,ecx
+ lea         ecx,[rdx-10]
+ cmp         r10,qword ptr [r9-80]
+ cmova       r10,qword ptr [r9-80]
+ cmova       eax,ecx
 CASE_9:
- lea		 ecx,[rdx-9]
- cmp		 r10,qword ptr [r9-72]
- cmova		 r10,qword ptr [r9-72]
- cmova		 eax,ecx
+ lea         ecx,[rdx-9]
+ cmp         r10,qword ptr [r9-72]
+ cmova       r10,qword ptr [r9-72]
+ cmova       eax,ecx
 CASE_8:
- lea		 ecx,[rdx-8]
- cmp		 r10,qword ptr [r9-64]
- cmova		 r10,qword ptr [r9-64]
- cmova		 eax,ecx
+ lea         ecx,[rdx-8]
+ cmp         r10,qword ptr [r9-64]
+ cmova       r10,qword ptr [r9-64]
+ cmova       eax,ecx
 CASE_7:
- lea		 ecx,[rdx-7]
- cmp		 r10,qword ptr [r9-56]
- cmova		 r10,qword ptr [r9-56]
- cmova		 eax,ecx
+ lea         ecx,[rdx-7]
+ cmp         r10,qword ptr [r9-56]
+ cmova       r10,qword ptr [r9-56]
+ cmova       eax,ecx
 CASE_6:
- lea		 ecx,[rdx-6]
- cmp		 r10,qword ptr [r9-48]
- cmova		 r10,qword ptr [r9-48]
- cmova		 eax,ecx
+ lea         ecx,[rdx-6]
+ cmp         r10,qword ptr [r9-48]
+ cmova       r10,qword ptr [r9-48]
+ cmova       eax,ecx
 CASE_5:
- lea		 ecx,[rdx-5]
- cmp		 r10,qword ptr [r9-40]
- cmova		 r10,qword ptr [r9-40]
- cmova		 eax,ecx
+ lea         ecx,[rdx-5]
+ cmp         r10,qword ptr [r9-40]
+ cmova       r10,qword ptr [r9-40]
+ cmova       eax,ecx
 CASE_4:
- lea		 ecx,[rdx-4]
- cmp		 r10,qword ptr [r9-32]
- cmova		 r10,qword ptr [r9-32]
- cmova		 eax,ecx
+ lea         ecx,[rdx-4]
+ cmp         r10,qword ptr [r9-32]
+ cmova       r10,qword ptr [r9-32]
+ cmova       eax,ecx
 CASE_3:
- lea		 ecx,[rdx-3]
- cmp		 r10,qword ptr [r9-24]
- cmova		 r10,qword ptr [r9-24]
- cmova		 eax,ecx
+ lea         ecx,[rdx-3]
+ cmp         r10,qword ptr [r9-24]
+ cmova       r10,qword ptr [r9-24]
+ cmova       eax,ecx
 CASE_2:
- lea		 ecx,[rdx-2]
- cmp		 r10,qword ptr [r9-16]
- cmova		 r10,qword ptr [r9-16]
- cmova		 eax,ecx
+ lea         ecx,[rdx-2]
+ cmp         r10,qword ptr [r9-16]
+ cmova       r10,qword ptr [r9-16]
+ cmova       eax,ecx
 CASE_1:
- lea		 ecx,[rdx-1]
- cmp		 r10,qword ptr [r9-8]
- cmova		 eax,ecx
+ lea         ecx,[rdx-1]
+ cmp         r10,qword ptr [r9-8]
+ cmova       eax,ecx
 CASE_0:
  add         rsp,72
  ret
@@ -121,7 +121,7 @@ CASE_LARGE:
  ; increment
  vpslld      ymm8,ymm0,4
  ; sign bit
- vpsllq		 ymm0,ymm0,63
+ vpsllq      ymm0,ymm0,63
 
  ; best values
  vpxor       ymm1,ymm0,ymmword ptr [rcx]
@@ -166,10 +166,10 @@ LOOP_TOP:
  jb          LOOP_TOP
 
 LOOP_END:
- sub		 eax,16
- vmovd		 xmm5,eax
+ sub         eax,16
+ vmovd       xmm5,eax
  vpbroadcastd ymm5,xmm5
- vpaddd		 ymm5,ymm5,ymmword ptr [PACKED_SEQ]
+ vpaddd      ymm5,ymm5,ymmword ptr [PACKED_SEQ]
 
  vpxor       ymm11,ymm0,ymmword ptr [rdx-128]
  vpcmpgtq    ymm9,ymm1,ymm11

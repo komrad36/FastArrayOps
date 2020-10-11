@@ -4,15 +4,15 @@ AsmFastMinI16 PROC
  mov         eax,edx
  cmp         edx,64
  jae         CASE_LARGE
- vpcmpeqd	 ymm0,ymm0,ymm0
- vpsrlw		 ymm0,ymm0,1
- lea		 r8,JUMP_TABLE
- movzx		 edx,byte ptr [r8+rax]
- add		 r8,rdx
+ vpcmpeqd    ymm0,ymm0,ymm0
+ vpsrlw      ymm0,ymm0,1
+ lea         r8,JUMP_TABLE
+ movzx       edx,byte ptr [r8+rax]
+ add         r8,rdx
  lea         rdx,[rcx+2*rax]
- and		 eax,-16
+ and         eax,-16
  lea         rcx,[rcx+2*rax]
- mov		 ax,07FFFh
+ mov         ax,07FFFh
  jmp         r8
 JUMP_TABLE:
 db  1 DUP ( CASE_0 - JUMP_TABLE)
@@ -26,7 +26,7 @@ db 16 DUP (CASE_32 - JUMP_TABLE)
 db 16 DUP (CASE_48 - JUMP_TABLE)
 db 1 DUP (0CCh)
 CASE_48:
- vmovdqu	 ymm0,ymmword ptr [rcx-96]
+ vmovdqu     ymm0,ymmword ptr [rcx-96]
 CASE_32:
  vpminsw     ymm0,ymm0,ymmword ptr [rcx-64]
 CASE_16:
@@ -66,7 +66,7 @@ CASE_4:
  ret
 db 1 DUP (0CCh)
 CASE_3:
- mov		 ax,word ptr [rdx-6]
+ mov         ax,word ptr [rdx-6]
 CASE_2:
  cmp         ax,word ptr [rdx-4]
  cmovg       ax,word ptr [rdx-4]

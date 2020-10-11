@@ -1,21 +1,21 @@
 _TEXT$AsmFastMinIdxFloat SEGMENT ALIGN(64)
 
 AsmFastMinIdxFloat PROC
- sub		 rsp,104
+ sub         rsp,104
  vmovdqu     ymm4,ymmword ptr [SEQ]
  mov         eax,edx
  cmp         edx,64
  jae         CASE_LARGE
  vpcmpeqd    ymm0,ymm0,ymm0
  vpslld      ymm2,ymm0,3
- vmovdqa	 ymm3,ymm4
+ vmovdqa     ymm3,ymm4
  vpcmpeqd    ymm1,ymm1,ymm1
- lea		 r8,JUMP_TABLE
- movzx		 edx,word ptr [r8+2*rax]
- add		 r8,rdx
+ lea         r8,JUMP_TABLE
+ movzx       edx,word ptr [r8+2*rax]
+ add         r8,rdx
  lea         rdx,[rcx+4*rax]
- mov		 r9d,eax
- and		 eax,-8
+ mov         r9d,eax
+ and         eax,-8
  lea         rcx,[rcx+4*rax]
  jmp         r8
 SEQ:
@@ -38,51 +38,51 @@ dw 8 DUP (CASE_48 - JUMP_TABLE)
 dw 8 DUP (CASE_56 - JUMP_TABLE)
 CASE_56:
  vmovups     ymm1,ymmword ptr [rcx-224]
- vpsubd		 ymm4,ymm4,ymm2
+ vpsubd      ymm4,ymm4,ymm2
 CASE_48:
  vminps      ymm0,ymm1,ymmword ptr [rcx-192]
  vpcmpeqd    ymm1,ymm0,ymm1
  vpblendvb   ymm3,ymm4,ymm3,ymm1
- vpsubd		 ymm4,ymm4,ymm2
+ vpsubd      ymm4,ymm4,ymm2
 CASE_40:
  vminps      ymm1,ymm0,ymmword ptr [rcx-160]
  vpcmpeqd    ymm0,ymm0,ymm1
  vpblendvb   ymm3,ymm4,ymm3,ymm0
- vpsubd		 ymm4,ymm4,ymm2
+ vpsubd      ymm4,ymm4,ymm2
 CASE_32:
  vminps      ymm0,ymm1,ymmword ptr [rcx-128]
  vpcmpeqd    ymm1,ymm0,ymm1
  vpblendvb   ymm3,ymm4,ymm3,ymm1
- vpsubd		 ymm4,ymm4,ymm2
+ vpsubd      ymm4,ymm4,ymm2
 CASE_24:
  vminps      ymm1,ymm0,ymmword ptr [rcx-96]
  vpcmpeqd    ymm0,ymm0,ymm1
  vpblendvb   ymm3,ymm4,ymm3,ymm0
- vpsubd		 ymm4,ymm4,ymm2
+ vpsubd      ymm4,ymm4,ymm2
 CASE_16:
  vminps      ymm0,ymm1,ymmword ptr [rcx-64]
  vpcmpeqd    ymm1,ymm0,ymm1
  vpblendvb   ymm3,ymm4,ymm3,ymm1
- vpsubd		 ymm4,ymm4,ymm2
+ vpsubd      ymm4,ymm4,ymm2
 CASE_8:
  vminps      ymm1,ymm0,ymmword ptr [rcx-32]
  vpcmpeqd    ymm0,ymm0,ymm1
  vpblendvb   ymm3,ymm4,ymm3,ymm0
- lea		 ecx,[r9-8]
- vmovd		 xmm4,ecx
+ lea         ecx,[r9-8]
+ vmovd       xmm4,ecx
  vpbroadcastd ymm4,xmm4
- vpaddd		 ymm4,ymm4,ymmword ptr [SEQ]
+ vpaddd      ymm4,ymm4,ymmword ptr [SEQ]
  vminps      ymm0,ymm1,ymmword ptr [rdx-32]
  vpcmpeqd    ymm1,ymm0,ymm1
  vpblendvb   ymm2,ymm4,ymm3,ymm1
  vextractf128 xmm1,ymm0,1
  vextracti128 xmm3,ymm2,1
- vminps		 xmm0,xmm0,xmm1
+ vminps      xmm0,xmm0,xmm1
  vpcmpeqd    xmm1,xmm0,xmm1
  vpblendvb   xmm2,xmm2,xmm3,xmm1
  vmovhlps    xmm1,xmm0,xmm0
  vpunpckhqdq xmm3,xmm2,xmm2
- vminps		 xmm0,xmm0,xmm1
+ vminps      xmm0,xmm0,xmm1
  vpcmpeqd    xmm1,xmm0,xmm1
  vpblendvb   xmm2,xmm2,xmm3,xmm1
  vmovshdup   xmm1,xmm0
@@ -96,33 +96,33 @@ CASE_7:
  vmovss      xmm0,dword ptr [rdx-28]
 CASE_6:
  vucomiss    xmm0,dword ptr [rdx-24]
- lea		 ecx,[r9-6]
- cmova		 eax,ecx
+ lea         ecx,[r9-6]
+ cmova       eax,ecx
  vminss      xmm0,xmm0,dword ptr [rdx-24]
 CASE_5:
  vucomiss    xmm0,dword ptr [rdx-20]
- lea		 ecx,[r9-5]
- cmova		 eax,ecx
+ lea         ecx,[r9-5]
+ cmova       eax,ecx
  vminss      xmm0,xmm0,dword ptr [rdx-20]
 CASE_4:
  vucomiss    xmm0,dword ptr [rdx-16]
- lea		 ecx,[r9-4]
- cmova		 eax,ecx
+ lea         ecx,[r9-4]
+ cmova       eax,ecx
  vminss      xmm0,xmm0,dword ptr [rdx-16]
 CASE_3:
  vucomiss    xmm0,dword ptr [rdx-12]
- lea		 ecx,[r9-3]
- cmova		 eax,ecx
+ lea         ecx,[r9-3]
+ cmova       eax,ecx
  vminss      xmm0,xmm0,dword ptr [rdx-12]
 CASE_2:
  vucomiss    xmm0,dword ptr [rdx-8]
- lea		 ecx,[r9-2]
- cmova		 eax,ecx
+ lea         ecx,[r9-2]
+ cmova       eax,ecx
  vminss      xmm0,xmm0,dword ptr [rdx-8]
 CASE_1:
  vucomiss    xmm0,dword ptr [rdx-4]
- lea		 ecx,[r9-1]
- cmova		 eax,ecx
+ lea         ecx,[r9-1]
+ cmova       eax,ecx
 CASE_0:
  add         rsp,104
  ret
@@ -207,10 +207,10 @@ LOOP_TOP:
  jb          LOOP_TOP
 
 LOOP_END:
- sub		 eax,64
- vmovd		 xmm4,eax
+ sub         eax,64
+ vmovd       xmm4,eax
  vpbroadcastd ymm4,xmm4
- vpaddd		 ymm4,ymm4,ymmword ptr [SEQ]
+ vpaddd      ymm4,ymm4,ymmword ptr [SEQ]
 
  vminps      ymm10,ymm0,ymmword ptr [rdx-256]
  vminps      ymm11,ymm1,ymmword ptr [rdx-224]
@@ -268,14 +268,14 @@ LOOP_END:
  vextractf128 xmm1,ymm0,1
  vextracti128 xmm3,ymm2,1
 
- vminps		 xmm0,xmm0,xmm1
+ vminps      xmm0,xmm0,xmm1
  vpcmpeqd    xmm1,xmm0,xmm1
  vpblendvb   xmm2,xmm2,xmm3,xmm1
 
  vmovhlps    xmm1,xmm0,xmm0
  vpunpckhqdq xmm3,xmm2,xmm2
 
- vminps		 xmm0,xmm0,xmm1
+ vminps      xmm0,xmm0,xmm1
  vpcmpeqd    xmm1,xmm0,xmm1
  vpblendvb   xmm2,xmm2,xmm3,xmm1
 
