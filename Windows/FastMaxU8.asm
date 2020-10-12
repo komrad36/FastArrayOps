@@ -1,6 +1,15 @@
-_TEXT$AsmFastMaxU8 SEGMENT ALIGN(64)
+; /*******************************************************************
+; *
+; *    Author: Kareem Omar
+; *    kareem.h.omar@gmail.com
+; *    https://github.com/komrad36
+; *
+; *    Last updated Oct 11, 2020
+; *******************************************************************/
 
-AsmFastMaxU8 PROC
+_TEXT$FastMaxU8 SEGMENT ALIGN(64)
+
+FastMaxU8 PROC
  mov         eax,edx
  cmp         edx,127
  ja          CASE_LARGE
@@ -143,8 +152,8 @@ GATHER_2:
  vpmaxub     xmm0,xmm0,xmm1
  vmovd       eax,xmm0
  ret
-AsmFastMaxU8 ENDP
+FastMaxU8 ENDP
 
-_TEXT$AsmFastMaxU8 ENDS
+_TEXT$FastMaxU8 ENDS
 
 END

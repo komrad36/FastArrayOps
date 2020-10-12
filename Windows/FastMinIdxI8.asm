@@ -1,6 +1,15 @@
-_TEXT$AsmFastMinIdxI8 SEGMENT ALIGN(64)
+; /*******************************************************************
+; *
+; *    Author: Kareem Omar
+; *    kareem.h.omar@gmail.com
+; *    https://github.com/komrad36
+; *
+; *    Last updated Oct 11, 2020
+; *******************************************************************/
 
-AsmFastMinIdxI8 PROC
+_TEXT$FastMinIdxI8 SEGMENT ALIGN(64)
+
+FastMinIdxI8 PROC
  sub         rsp,200
  vmovdqu     ymm4,ymmword ptr [SEQ]
  mov         eax,edx
@@ -610,8 +619,8 @@ INNER_LOOP_END:
  add         rsp,200
  ret
 
-AsmFastMinIdxI8 ENDP
+FastMinIdxI8 ENDP
 
-_TEXT$AsmFastMinIdxI8 ENDS
+_TEXT$FastMinIdxI8 ENDS
 
 END

@@ -1,6 +1,15 @@
-_TEXT$AsmFastMaxU64 SEGMENT ALIGN(64)
+; /*******************************************************************
+; *
+; *    Author: Kareem Omar
+; *    kareem.h.omar@gmail.com
+; *    https://github.com/komrad36
+; *
+; *    Last updated Oct 11, 2020
+; *******************************************************************/
 
-AsmFastMaxU64 PROC
+_TEXT$FastMaxU64 SEGMENT ALIGN(64)
+
+FastMaxU64 PROC
  sub         rsp,56
  vpcmpeqd    ymm1,ymm1,ymm1
  mov         eax,edx
@@ -207,8 +216,8 @@ CASE_LARGE:
  btc         rax,63
  add         rsp,56
  ret
-AsmFastMaxU64 ENDP
+FastMaxU64 ENDP
 
-_TEXT$AsmFastMaxU64 ENDS
+_TEXT$FastMaxU64 ENDS
 
 END

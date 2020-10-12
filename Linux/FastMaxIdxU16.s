@@ -1,9 +1,18 @@
+; /*******************************************************************
+; *
+; *    Author: Kareem Omar
+; *    kareem.h.omar@gmail.com
+; *    https://github.com/komrad36
+; *
+; *    Last updated Oct 11, 2020
+; *******************************************************************/
+
 bits 64
 section .text
 align 64
-global AsmFastMaxIdxU16
+global FastMaxIdxU16
 
-AsmFastMaxIdxU16:
+FastMaxIdxU16:
  vmovdqu     ymm4,yword [SEQ]
  mov         eax,esi
  cmp         esi,127

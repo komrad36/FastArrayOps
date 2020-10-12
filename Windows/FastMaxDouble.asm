@@ -1,6 +1,15 @@
-_TEXT$AsmFastMaxDouble SEGMENT ALIGN(64)
+; /*******************************************************************
+; *
+; *    Author: Kareem Omar
+; *    kareem.h.omar@gmail.com
+; *    https://github.com/komrad36
+; *
+; *    Last updated Oct 11, 2020
+; *******************************************************************/
 
-AsmFastMaxDouble PROC
+_TEXT$FastMaxDouble SEGMENT ALIGN(64)
+
+FastMaxDouble PROC
  mov         eax,edx
  cmp         edx,32
  jae         CASE_LARGE
@@ -127,8 +136,8 @@ LOOP_END:
  vpermilpd   xmm1,xmm0,1
  vmaxsd      xmm0,xmm0,xmm1
  ret
-AsmFastMaxDouble ENDP
+FastMaxDouble ENDP
 
-_TEXT$AsmFastMaxDouble ENDS
+_TEXT$FastMaxDouble ENDS
 
 END

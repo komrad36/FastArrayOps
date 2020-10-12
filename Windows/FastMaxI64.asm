@@ -1,6 +1,15 @@
-_TEXT$AsmFastMaxI64 SEGMENT ALIGN(64)
+; /*******************************************************************
+; *
+; *    Author: Kareem Omar
+; *    kareem.h.omar@gmail.com
+; *    https://github.com/komrad36
+; *
+; *    Last updated Oct 11, 2020
+; *******************************************************************/
 
-AsmFastMaxI64 PROC
+_TEXT$FastMaxI64 SEGMENT ALIGN(64)
+
+FastMaxI64 PROC
  sub         rsp,40
  mov         eax,edx
  cmp         edx,32
@@ -204,8 +213,8 @@ GATHER_1:
  vmovq       rax,xmm0
  add         rsp,40
  ret
-AsmFastMaxI64 ENDP
+FastMaxI64 ENDP
 
-_TEXT$AsmFastMaxI64 ENDS
+_TEXT$FastMaxI64 ENDS
 
 END

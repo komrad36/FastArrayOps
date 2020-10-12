@@ -1,9 +1,18 @@
+; /*******************************************************************
+; *
+; *    Author: Kareem Omar
+; *    kareem.h.omar@gmail.com
+; *    https://github.com/komrad36
+; *
+; *    Last updated Oct 11, 2020
+; *******************************************************************/
+
 bits 64
 section .text
 align 64
-global AsmFastMinIdxI8
+global FastMinIdxI8
 
-AsmFastMinIdxI8:
+FastMinIdxI8:
  sub         rsp,136
  vmovdqu     ymm4,yword [SEQ]
  mov         eax,esi

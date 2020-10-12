@@ -1,6 +1,15 @@
-_TEXT$AsmFastMaxIdxFloat SEGMENT ALIGN(64)
+; /*******************************************************************
+; *
+; *    Author: Kareem Omar
+; *    kareem.h.omar@gmail.com
+; *    https://github.com/komrad36
+; *
+; *    Last updated Oct 11, 2020
+; *******************************************************************/
 
-AsmFastMaxIdxFloat PROC
+_TEXT$FastMaxIdxFloat SEGMENT ALIGN(64)
+
+FastMaxIdxFloat PROC
  sub         rsp,104
  vmovdqu     ymm4,ymmword ptr [SEQ]
  mov         eax,edx
@@ -288,8 +297,8 @@ LOOP_END:
 
  add         rsp,104
  ret
-AsmFastMaxIdxFloat ENDP
+FastMaxIdxFloat ENDP
 
-_TEXT$AsmFastMaxIdxFloat ENDS
+_TEXT$FastMaxIdxFloat ENDS
 
 END

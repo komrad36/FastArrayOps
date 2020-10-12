@@ -1,6 +1,15 @@
-_TEXT$AsmFastMaxIdxI64 SEGMENT ALIGN(64)
+; /*******************************************************************
+; *
+; *    Author: Kareem Omar
+; *    kareem.h.omar@gmail.com
+; *    https://github.com/komrad36
+; *
+; *    Last updated Oct 11, 2020
+; *******************************************************************/
 
-AsmFastMaxIdxI64 PROC
+_TEXT$FastMaxIdxI64 SEGMENT ALIGN(64)
+
+FastMaxIdxI64 PROC
  sub         rsp,56
  mov         eax,edx
  cmp         edx,16
@@ -226,8 +235,8 @@ LOOP_END:
 
  add         rsp,56
  ret
-AsmFastMaxIdxI64 ENDP
+FastMaxIdxI64 ENDP
 
-_TEXT$AsmFastMaxIdxI64 ENDS
+_TEXT$FastMaxIdxI64 ENDS
 
 END

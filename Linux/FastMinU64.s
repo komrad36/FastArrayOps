@@ -1,9 +1,18 @@
+; /*******************************************************************
+; *
+; *    Author: Kareem Omar
+; *    kareem.h.omar@gmail.com
+; *    https://github.com/komrad36
+; *
+; *    Last updated Oct 11, 2020
+; *******************************************************************/
+
 bits 64
 section .text
 align 64
-global AsmFastMinU64
+global FastMinU64
 
-AsmFastMinU64:
+FastMinU64:
  vpcmpeqd    ymm1,ymm1,ymm1
  mov         eax,esi
  vpsllq      ymm0,ymm1,63

@@ -1,6 +1,15 @@
-_TEXT$AsmFastMinU32 SEGMENT ALIGN(64)
+; /*******************************************************************
+; *
+; *    Author: Kareem Omar
+; *    kareem.h.omar@gmail.com
+; *    https://github.com/komrad36
+; *
+; *    Last updated Oct 11, 2020
+; *******************************************************************/
 
-AsmFastMinU32 PROC
+_TEXT$FastMinU32 SEGMENT ALIGN(64)
+
+FastMinU32 PROC
  mov         eax,edx
  cmp         edx,32
  jae         CASE_LARGE
@@ -101,8 +110,8 @@ LOOP_END:
  vpminud     xmm0,xmm0,xmm1
  vmovd       eax,xmm0
  ret
-AsmFastMinU32 ENDP
+FastMinU32 ENDP
 
-_TEXT$AsmFastMinU32 ENDS
+_TEXT$FastMinU32 ENDS
 
 END

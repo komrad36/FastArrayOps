@@ -1,6 +1,15 @@
-_TEXT$AsmFastMaxFloat SEGMENT ALIGN(64)
+; /*******************************************************************
+; *
+; *    Author: Kareem Omar
+; *    kareem.h.omar@gmail.com
+; *    https://github.com/komrad36
+; *
+; *    Last updated Oct 11, 2020
+; *******************************************************************/
 
-AsmFastMaxFloat PROC
+_TEXT$FastMaxFloat SEGMENT ALIGN(64)
+
+FastMaxFloat PROC
  mov         eax,edx
  cmp         edx,64
  jae         CASE_LARGE
@@ -131,8 +140,8 @@ LOOP_END:
  vmovshdup   xmm1,xmm0
  vmaxss      xmm0,xmm0,xmm1
  ret
-AsmFastMaxFloat ENDP
+FastMaxFloat ENDP
 
-_TEXT$AsmFastMaxFloat ENDS
+_TEXT$FastMaxFloat ENDS
 
 END

@@ -1,6 +1,15 @@
-_TEXT$AsmFastMinIdxDouble SEGMENT ALIGN(64)
+; /*******************************************************************
+; *
+; *    Author: Kareem Omar
+; *    kareem.h.omar@gmail.com
+; *    https://github.com/komrad36
+; *
+; *    Last updated Oct 11, 2020
+; *******************************************************************/
 
-AsmFastMinIdxDouble PROC
+_TEXT$FastMinIdxDouble SEGMENT ALIGN(64)
+
+FastMinIdxDouble PROC
  sub         rsp,72
  mov         eax,edx
  cmp         edx,32
@@ -251,8 +260,8 @@ LOOP_END:
 
  add         rsp,72
  ret
-AsmFastMinIdxDouble ENDP
+FastMinIdxDouble ENDP
 
-_TEXT$AsmFastMinIdxDouble ENDS
+_TEXT$FastMinIdxDouble ENDS
 
 END

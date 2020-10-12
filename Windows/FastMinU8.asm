@@ -1,6 +1,15 @@
-_TEXT$AsmFastMinU8 SEGMENT ALIGN(64)
+; /*******************************************************************
+; *
+; *    Author: Kareem Omar
+; *    kareem.h.omar@gmail.com
+; *    https://github.com/komrad36
+; *
+; *    Last updated Oct 11, 2020
+; *******************************************************************/
 
-AsmFastMinU8 PROC
+_TEXT$FastMinU8 SEGMENT ALIGN(64)
+
+FastMinU8 PROC
  mov         eax,edx
  cmp         edx,127
  ja          CASE_LARGE
@@ -144,8 +153,8 @@ GATHER_2:
  vpminub     xmm0,xmm0,xmm1
  vmovd       eax,xmm0
  ret
-AsmFastMinU8 ENDP
+FastMinU8 ENDP
 
-_TEXT$AsmFastMinU8 ENDS
+_TEXT$FastMinU8 ENDS
 
 END

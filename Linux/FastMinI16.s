@@ -1,9 +1,18 @@
+; /*******************************************************************
+; *
+; *    Author: Kareem Omar
+; *    kareem.h.omar@gmail.com
+; *    https://github.com/komrad36
+; *
+; *    Last updated Oct 11, 2020
+; *******************************************************************/
+
 bits 64
 section .text
 align 64
-global AsmFastMinI16
+global FastMinI16
 
-AsmFastMinI16:
+FastMinI16:
  mov         eax,esi
  cmp         esi,64
  jae         CASE_LARGE

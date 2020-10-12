@@ -1,6 +1,15 @@
-_TEXT$AsmFastMaxI8 SEGMENT ALIGN(64)
+; /*******************************************************************
+; *
+; *    Author: Kareem Omar
+; *    kareem.h.omar@gmail.com
+; *    https://github.com/komrad36
+; *
+; *    Last updated Oct 11, 2020
+; *******************************************************************/
 
-AsmFastMaxI8 PROC
+_TEXT$FastMaxI8 SEGMENT ALIGN(64)
+
+FastMaxI8 PROC
  mov         eax,edx
  cmp         edx,127
  ja          CASE_LARGE
@@ -145,8 +154,8 @@ LOOP_END:
  vmovd       eax,xmm0
  ret
 
-AsmFastMaxI8 ENDP
+FastMaxI8 ENDP
 
-_TEXT$AsmFastMaxI8 ENDS
+_TEXT$FastMaxI8 ENDS
 
 END
