@@ -25,3 +25,12 @@ I32/U32        | 12x                 | 1.1x                | 8.5x
 I64/U64        | 7.0x                | 1.3x                | 3.1x                
 Float          | 13.0x               | 28x                 | 8.9x                
 Double         | 7.0x                | 14x                 | 5.0x    
+
+Min/max index does not guarantee _which_ index is returned if multiple elements are all the minimum.
+
+In contrast, find-element _does_ guarantee to always return the first (lowest-index) element that matches.
+
+0 element arrays are handled gracefully. Min/max index returns ~0U. Min/max returns the min/max representable value for the datatype.
+
+If find-element does not find the element, it returns ~0ULL.
+
