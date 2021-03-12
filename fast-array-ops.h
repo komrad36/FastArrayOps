@@ -4,12 +4,128 @@
 *    kareem.h.omar@gmail.com
 *    https://github.com/komrad36
 *
-*    Last updated Oct 11, 2020
+*    Last updated Mar 12, 2020
 *******************************************************************/
 
 #pragma once
 
 #include <cstdint>
+
+extern "C" bool FastContains8(const void* p, uint64_t n, uint8_t q);
+extern "C" bool FastContains16(const void* p, uint64_t n, uint16_t q);
+extern "C" bool FastContains32(const void* p, uint64_t n, uint32_t q);
+extern "C" bool FastContains64(const void* p, uint64_t n, uint64_t q);
+
+extern "C" bool FastContainsFloat(const float* p, uint64_t n, float q);
+extern "C" bool FastContainsDouble(const double* p, uint64_t n, double q);
+
+extern "C" uint64_t FastFind8(const void* p, uint64_t n, uint8_t q);
+extern "C" uint64_t FastFind16(const void* p, uint64_t n, uint16_t q);
+extern "C" uint64_t FastFind32(const void* p, uint64_t n, uint32_t q);
+extern "C" uint64_t FastFind64(const void* p, uint64_t n, uint64_t q);
+
+extern "C" uint64_t FastFindFloat(const float* p, uint64_t n, float q);
+extern "C" uint64_t FastFindDouble(const double* p, uint64_t n, double q);
+
+static inline bool FastContains(const int8_t* p, uint64_t n, int8_t q)
+{
+    return FastContains8(p, n, uint8_t(q));
+}
+
+static inline bool FastContains(const uint8_t* p, uint64_t n, uint8_t q)
+{
+    return FastContains8(p, n, q);
+}
+
+static inline bool FastContains(const int16_t* p, uint64_t n, int16_t q)
+{
+    return FastContains16(p, n, uint16_t(q));
+}
+
+static inline bool FastContains(const uint16_t* p, uint64_t n, uint16_t q)
+{
+    return FastContains16(p, n, q);
+}
+
+static inline bool FastContains(const int32_t* p, uint64_t n, int32_t q)
+{
+    return FastContains32(p, n, uint32_t(q));
+}
+
+static inline bool FastContains(const uint32_t* p, uint64_t n, uint32_t q)
+{
+    return FastContains32(p, n, q);
+}
+
+static inline bool FastContains(const int64_t* p, uint64_t n, int64_t q)
+{
+    return FastContains64(p, n, uint64_t(q));
+}
+
+static inline bool FastContains(const uint64_t* p, uint64_t n, uint64_t q)
+{
+    return FastContains64(p, n, q);
+}
+
+static inline bool FastContains(const float* p, uint64_t n, float q)
+{
+    return FastContainsFloat(p, n, q);
+}
+
+static inline bool FastContains(const double* p, uint64_t n, double q)
+{
+    return FastContainsDouble(p, n, q);
+}
+
+static inline uint64_t FastFind(const int8_t* p, uint64_t n, int8_t q)
+{
+    return FastFind8(p, n, uint8_t(q));
+}
+
+static inline uint64_t FastFind(const uint8_t* p, uint64_t n, uint8_t q)
+{
+    return FastFind8(p, n, q);
+}
+
+static inline uint64_t FastFind(const int16_t* p, uint64_t n, int16_t q)
+{
+    return FastFind16(p, n, uint16_t(q));
+}
+
+static inline uint64_t FastFind(const uint16_t* p, uint64_t n, uint16_t q)
+{
+    return FastFind16(p, n, q);
+}
+
+static inline uint64_t FastFind(const int32_t* p, uint64_t n, int32_t q)
+{
+    return FastFind32(p, n, uint32_t(q));
+}
+
+static inline uint64_t FastFind(const uint32_t* p, uint64_t n, uint32_t q)
+{
+    return FastFind32(p, n, q);
+}
+
+static inline uint64_t FastFind(const int64_t* p, uint64_t n, int64_t q)
+{
+    return FastFind64(p, n, uint64_t(q));
+}
+
+static inline uint64_t FastFind(const uint64_t* p, uint64_t n, uint64_t q)
+{
+    return FastFind64(p, n, q);
+}
+
+static inline uint64_t FastFind(const float* p, uint64_t n, float q)
+{
+    return FastFindFloat(p, n, q);
+}
+
+static inline uint64_t FastFind(const double* p, uint64_t n, double q)
+{
+    return FastFindDouble(p, n, q);
+}
 
 extern "C" float FastMinFloat(const float* p, uint32_t n);
 extern "C" uint32_t FastMinIdxFloat(const float* p, uint32_t n);
@@ -47,29 +163,29 @@ extern "C" uint32_t FastMaxIdxFloat(const float* p, uint32_t n);
 extern "C" double FastMaxDouble(const double* p, uint32_t n);
 extern "C" uint32_t FastMaxIdxDouble(const double* p, uint32_t n);
 
-extern "C" int8_t FastMaxI8(const int8_t * p, uint32_t n);
-extern "C" uint32_t FastMaxIdxI8(const int8_t * p, uint32_t n);
+extern "C" int8_t FastMaxI8(const int8_t* p, uint32_t n);
+extern "C" uint32_t FastMaxIdxI8(const int8_t* p, uint32_t n);
 
-extern "C" int16_t FastMaxI16(const int16_t * p, uint32_t n);
-extern "C" uint32_t FastMaxIdxI16(const int16_t * p, uint32_t n);
+extern "C" int16_t FastMaxI16(const int16_t* p, uint32_t n);
+extern "C" uint32_t FastMaxIdxI16(const int16_t* p, uint32_t n);
 
-extern "C" int32_t FastMaxI32(const int32_t * p, uint32_t n);
-extern "C" uint32_t FastMaxIdxI32(const int32_t * p, uint32_t n);
+extern "C" int32_t FastMaxI32(const int32_t* p, uint32_t n);
+extern "C" uint32_t FastMaxIdxI32(const int32_t* p, uint32_t n);
 
-extern "C" int64_t FastMaxI64(const int64_t * p, uint32_t n);
-extern "C" uint32_t FastMaxIdxI64(const int64_t * p, uint32_t n);
+extern "C" int64_t FastMaxI64(const int64_t* p, uint32_t n);
+extern "C" uint32_t FastMaxIdxI64(const int64_t* p, uint32_t n);
 
-extern "C" uint8_t FastMaxU8(const uint8_t * p, uint32_t n);
-extern "C" uint32_t FastMaxIdxU8(const uint8_t * p, uint32_t n);
+extern "C" uint8_t FastMaxU8(const uint8_t* p, uint32_t n);
+extern "C" uint32_t FastMaxIdxU8(const uint8_t* p, uint32_t n);
 
-extern "C" uint16_t FastMaxU16(const uint16_t * p, uint32_t n);
-extern "C" uint32_t FastMaxIdxU16(const uint16_t * p, uint32_t n);
+extern "C" uint16_t FastMaxU16(const uint16_t* p, uint32_t n);
+extern "C" uint32_t FastMaxIdxU16(const uint16_t* p, uint32_t n);
 
-extern "C" uint32_t FastMaxU32(const uint32_t * p, uint32_t n);
-extern "C" uint32_t FastMaxIdxU32(const uint32_t * p, uint32_t n);
+extern "C" uint32_t FastMaxU32(const uint32_t* p, uint32_t n);
+extern "C" uint32_t FastMaxIdxU32(const uint32_t* p, uint32_t n);
 
-extern "C" uint64_t FastMaxU64(const uint64_t * p, uint32_t n);
-extern "C" uint32_t FastMaxIdxU64(const uint64_t * p, uint32_t n);
+extern "C" uint64_t FastMaxU64(const uint64_t* p, uint32_t n);
+extern "C" uint32_t FastMaxIdxU64(const uint64_t* p, uint32_t n);
 
 static inline float FastMin(const float* p, uint32_t n)
 {
