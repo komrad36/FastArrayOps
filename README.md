@@ -30,7 +30,7 @@ Min/max index does not guarantee _which_ index is returned if multiple elements 
 
 In contrast, find-element _does_ guarantee to always return the first (lowest-index) element that matches.
 
-0 element arrays are handled gracefully. Min/max index returns ~0U. Min/max returns the min/max representable value for the datatype.
+0-element arrays are handled gracefully. Min/max index returns ~0U. Min/max returns the min/max representable value for the datatype.
 
 If find-element does not find the element, it returns ~0ULL.
 
