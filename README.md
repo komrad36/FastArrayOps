@@ -9,9 +9,9 @@ Extremely fast (up to 35x faster than compiler or STL, for arbitrarily large or 
 - Find index of min element in array (idx-min, argmin, minidx)
 - Find index of max element in array (idx-max, argmax, maxidx)
 
-This means the crossover point at which accelerated structures such as hash tables or trees become preferable to linear arrays is much, MUCH larger than usually taught or seen in the wild, especially for small elements. A linear array traversed with this library is faster for find-element, find-min, find-max, decrease-value, increase-value operations than "better" data structures unless you have *thousands* of elements.
+This means the crossover point at which accelerated structures such as hash tables or trees become preferable to linear arrays is much, MUCH larger than usually taught or seen in the wild, especially for small elements. A linear array traversed with this library is faster for find-element, find-min, find-max, decrease-value, increase-value operations than "better" data structures unless you have hundreds or even thousands of elements.
 
-Note that these are the operations provided by a priority queue, and indeed, similarly, an array-backed priority queue implemented with this library is faster than the traditional heap-backed priority queue unless you have many hundreds or thousands of elements.
+Note that these are the operations provided by a priority queue, and indeed, similarly, an array-backed priority queue implemented with this library is faster than the traditional heap-backed priority queue unless you have hundreds or thousands of elements.
 
 The following are speedups for __large n__; proportional speedup is even higher than this for smaller n as the functions incorporate bespoke behavior optimized over all n.
 
